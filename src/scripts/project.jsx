@@ -2,6 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import configureStore from './store/store'
 import Root from './root'
+const store = configureStore()
+window.store = store
 
 document.addEventListener('DOMContentLoaded', () => {
 	const store = configureStore()
