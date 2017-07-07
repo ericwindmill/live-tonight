@@ -7,22 +7,21 @@ class Main extends Component {
     this.state = {
       pos: {}
     }
-    navigator.geolocation.getCurrentPosition = navigator.geolocation.getCurrentPosition.bind(this)
   }
 
   // Get Geolocation!
-  componentWillMount () {
+  componentDidMount () {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         let pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
-        
-        this.setState({
-          pos: pos
-        })
-      }, function () {
+        this.setState({pos: pos})
+
+//TODO!! I NEED AN INFO WINDOW FOR ERROR HANDLING! 
+
+      }.bind(this), function () {
         handleLocationError(true)
       })
     } else {
