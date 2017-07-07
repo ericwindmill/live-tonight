@@ -2,11 +2,13 @@ const SIGN_IN = 'SIGN_IN'
 const SIGN_OUT = 'SIGN_OUT'
 
 export const signIn = user => ({
-  dispatch(user)
+  dispatch(signedIn())
 })
 
 export const signOut = () => ({
   dispatch(user)
 })
 
-co
+const signedIn = user => ({
+
+})

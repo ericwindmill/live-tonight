@@ -11,7 +11,7 @@ import MainContainer from './components/MainContainer'
 const Root = ({store}) => {
   return (
     <Provider store={store}>
-      <AppContainer />
+      <MainContainer />
     </Provider>
   ) 
 }

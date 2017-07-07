@@ -4,6 +4,10 @@ import configureStore from './store/store'
 import Root from './root'
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
 
+//Testing
+import { fetchConcerts } from './util/concert_util'
+window.fetchConcerts = fetchConcerts
+
 const store = configureStore()
 window.store = store
 
