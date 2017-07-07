@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 
 import reducers from './reducers/root_reducer.js'
 import AppContainer from './components/AppContainer'
+import MainContainer from './components/MainContainer'
 
 const Root = ({store}) => {
   return (
