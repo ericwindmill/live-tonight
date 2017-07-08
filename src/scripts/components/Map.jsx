@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
+
 
 class Map extends Component {
   constructor (props) {
@@ -6,34 +8,33 @@ class Map extends Component {
     this.state = { 
       coords: ''
     }
-
   }
 
-  componentDidMount () {
-    // create a script tag and mount it to the document head
-    let script = document.createElement('script')
-    script.setAttribute('type', 'text/javascript')
-    script.setAttribute('src', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCcYz-3h9S5-f1FJlyHcivofQ5TC4M6Jno&callback=initMap')
-    document.getElementsByTagName('head')[0].appendChild(script)
-    // create the map, which will automatically be centered on SF.
-    window.initMap = () => {
-      let pos = {lat: 37.7749, lng: -122.4194}
-      let zoom = 12
-      let infoWindow = new google.maps.InfoWindow;
-      let map = new google.maps.Map(document.getElementById('map'), {
-        zoom: zoom,
-        center: pos
-      });
-      
+    componentDidMount () {
+      const mapDOMNode = ReactDOM.findDOMNode(this.refs.map)
+      let mapOptions = {
+        center: {lat: 37.7749, lng: -122.4149},
+        zoom: 12
       }
+      this.map = new google.maps.Map(mapDOMNode, mapOptions)
+    }
+ 
+    componentDidUpdate (prevProps, prevState) {
+      let pos = {lat: this.props.map.lat, lng: this.props.map.lng} 
+      this.map.setCenter(pos)
+      
+      // let coder = new google.maps.Geocoder
+      // coder.geocode({'location': pos}, (results, status) => {
+      //   this.props.updateZip(results[0].address_components.slice(-1)[0].long_name)
+      // })
+      // } 
     }
   
 
   render () {
-    console.log(this.props)
     return (
       <div className='Map'>
-        <div id="map"></div>
+        <div ref='map' id="map"></div>
       </div>
     )
   }

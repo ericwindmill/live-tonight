@@ -1,3 +1,7 @@
+// Suggestions for refactoring:
+-- get rid of MapContainer, pass Map.Props as state from Main, rename Main / Main Container in Location / Location
+
+
 Dataflow
 First:   Google Map automatically loads @ users location.
          This gives up access to long and lat
@@ -26,3 +30,4 @@ Also create list items
 
 Next Part:
 Use that information to hit the spotify API and return songs
+

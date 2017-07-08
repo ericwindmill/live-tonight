@@ -1,6 +1,9 @@
 import { connect } from 'react-redux'
 import Main from './Main'
-import { updateUserCoordinates } from '../actions/map_actions'
+import {
+  updateUserCoordinates,
+  updateZip
+} from '../actions/map_actions'
 
 const mapStateToProps = dispatch => {
   return {
@@ -10,7 +13,8 @@ const mapStateToProps = dispatch => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateUserCoordinates: (lat, lng) => dispatch(updateUserCoordinates(lat, lng))
+    updateUserCoordinates: (lat, lng) => dispatch(updateUserCoordinates(lat, lng)),
+    updateZip: (zip) => dispatch(updateZip(zip))
   }
 }
 

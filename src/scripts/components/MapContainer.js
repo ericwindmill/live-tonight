@@ -1,5 +1,8 @@
 import { connect } from 'react-redux'
 import Map from './Map'
+import {
+  updateZip
+} from '../actions/map_actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -9,7 +12,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-
+    updateZip: (zip) => dispatch(updateZip(zip))
   }
 }
 

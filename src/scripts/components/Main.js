@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import MapContainer from './MapContainer'
-// import { grabUserCoordinates } from '../util/map_util'
-// import { updateUserCoordinates } from '../actions/map_actions'
 
 class Main extends Component {
   constructor (props) {
@@ -40,6 +38,7 @@ class Main extends Component {
     if (prevState.pos !== this.state.pos) {
       let lat = this.state.pos.lat
       let lng = this.state.pos.lng
+
       this.props.updateUserCoordinates(lat, lng)
     }
   }
