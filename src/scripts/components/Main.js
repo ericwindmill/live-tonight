@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import MapContainer from './MapContainer'
+// import { grabUserCoordinates } from '../util/map_util'
+// import { updateUserCoordinates } from '../actions/map_actions'
 
 class Main extends Component {
   constructor (props) {
@@ -10,7 +12,7 @@ class Main extends Component {
   }
 
   // Get Geolocation!
-  componentDidMount () {
+  componentWillMount () {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         let pos = {
@@ -18,14 +20,11 @@ class Main extends Component {
           lng: position.coords.longitude
         }
         this.setState({pos: pos})
-
-//TODO!! I NEED AN INFO WINDOW FOR ERROR HANDLING! 
-
+        // TODO!! I NEED AN INFO WINDOW FOR ERROR HANDLING!
       }.bind(this), function () {
         handleLocationError(true)
       })
     } else {
-      // Browser doesn't support Geolocation
       handleLocationError(false)
     }
     function handleLocationError (browserHasGeolocation, infoWindow, pos) {
@@ -37,8 +36,15 @@ class Main extends Component {
     }
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    if (prevState.pos !== this.state.pos) {
+      let lat = this.state.pos.lat
+      let lng = this.state.pos.lng
+      this.props.updateUserCoordinates(lat, lng)
+    }
+  }
+
   render () {
-    console.log(this)
     return (
       <div className='Main'>
         <MapContainer />

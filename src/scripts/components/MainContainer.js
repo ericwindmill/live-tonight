@@ -1,15 +1,16 @@
 import { connect } from 'react-redux'
 import Main from './Main'
+import { updateUserCoordinates } from '../actions/map_actions'
 
 const mapStateToProps = dispatch => {
   return {
-    sample: {a: 1, b: 2}
+
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    sampleFunc: (data) => console.log(data)
+    updateUserCoordinates: (lat, lng) => dispatch(updateUserCoordinates(lat, lng))
   }
 }
 

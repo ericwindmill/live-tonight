@@ -1,16 +1,15 @@
 import { connect } from 'react-redux'
 import Map from './Map'
-import { grabUserCoordinates } from '../util/map_util'
 
-const mapStateToProps = dispatch => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    sample: {a: 1, b: 2}
+    map: state.map
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    grabUserCoordinates: () => grabUserCoordinates()
+
   }
 }
 

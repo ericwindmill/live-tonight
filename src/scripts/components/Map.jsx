@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-
-
 class Map extends Component {
   constructor (props) {
     super(props)
@@ -17,7 +15,7 @@ class Map extends Component {
     script.setAttribute('type', 'text/javascript')
     script.setAttribute('src', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCcYz-3h9S5-f1FJlyHcivofQ5TC4M6Jno&callback=initMap')
     document.getElementsByTagName('head')[0].appendChild(script)
-    // create the map... 
+    // create the map, which will automatically be centered on SF.
     window.initMap = () => {
       let pos = {lat: 37.7749, lng: -122.4194}
       let zoom = 12
@@ -27,33 +25,17 @@ class Map extends Component {
         center: pos
       });
       
-      // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-          infoWindow.setPosition(pos);
-          infoWindow.setContent(browserHasGeolocation ?
-                                'Error: The Geolocation service failed.' :
-                                'Error: Your browser doesn\'t support geolocation.');
-          infoWindow.open(map);
-        }
       }
+    }
+
+    componentDidReceiveProps (prevProps) {
+        console.log('prev', prevProps)
+        console.log('this', this.props)
     }
   
 
   render () {
+    console.log(this.props)
     return (
       <div className='Map'>
         <div id="map"></div>

@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux'
-import appReducer from './app_reducer'
-// import your other reducers here...
+import MapReducer from './map_reducer'
 
 const RootReducer = combineReducers({
-  message: appReducer
+  map: MapReducer
 })
 
 export default RootReducer
