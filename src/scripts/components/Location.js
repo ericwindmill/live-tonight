@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import MapContainer from './MapContainer'
+import Map from './Map'
 
-class Main extends Component {
+class Location extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -45,12 +45,12 @@ class Main extends Component {
 
   render () {
     return (
-      <div className='Main'>
-        <MapContainer />
+      <div className='Location'>
+        <Map map={this.props.map} />
       </div>
     )
   }
 
 }
 
-export default Main
+export default Location

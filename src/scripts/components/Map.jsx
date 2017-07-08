@@ -32,6 +32,7 @@ class Map extends Component {
   
 
   render () {
+    console.log(this.props)
     return (
       <div className='Map'>
         <div ref='map' id="map"></div>

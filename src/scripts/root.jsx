@@ -5,14 +5,14 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
 import reducers from './reducers/root_reducer.js'
-import MainContainer from './components/MainContainer'
+import LocationContainer from './components/Location_Container'
 
 
 
 const Root = ({store}) => {
   return (
     <Provider store={store}>
-      <MainContainer />
+      <LocationContainer />
     </Provider>
   ) 
 }
