@@ -13,7 +13,10 @@ export const updateUserCoordinates = (lat, lng) => {
   }
 }
 
-export const updateZip = zip => ({
-  type: GET_ZIP,
-  zip
-})
+export const updateZip = zip => {
+
+  return {
+    type: GET_ZIP,
+    zip: {zip}
+  }
+}

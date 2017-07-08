@@ -22,12 +22,6 @@ class Map extends Component {
     componentDidUpdate (prevProps, prevState) {
       let pos = {lat: this.props.map.lat, lng: this.props.map.lng} 
       this.map.setCenter(pos)
-      
-      // let coder = new google.maps.Geocoder
-      // coder.geocode({'location': pos}, (results, status) => {
-      //   this.props.updateZip(results[0].address_components.slice(-1)[0].long_name)
-      // })
-      // } 
     }
   
 

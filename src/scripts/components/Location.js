@@ -9,7 +9,7 @@ class Location extends Component {
     }
   }
 
-  // Get Geolocation!
+  // Get Geolocation and put it in the state!
   componentWillMount () {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -34,12 +34,20 @@ class Location extends Component {
     }
   }
 
+  // Get ZipCode and put it in the application state!
   componentDidUpdate (prevProps, prevState) {
+    let pos, lat, lng
     if (prevState.pos !== this.state.pos) {
-      let lat = this.state.pos.lat
-      let lng = this.state.pos.lng
-
+      lat = this.state.pos.lat
+      lng = this.state.pos.lng
+      pos = { lat: lat, lng: lng } 
       this.props.updateUserCoordinates(lat, lng)
+
+      let coder = new google.maps.Geocoder
+      coder.geocode({'location': pos}, (results, status) => {
+        let zip = results[0].address_components.slice(-1)[0].long_name
+        this.props.updateZip(zip)
+      })
     }
   }
 
