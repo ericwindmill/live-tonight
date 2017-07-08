@@ -27,11 +27,6 @@ class Map extends Component {
       
       }
     }
-
-    componentDidReceiveProps (prevProps) {
-        console.log('prev', prevProps)
-        console.log('this', this.props)
-    }
   
 
   render () {
