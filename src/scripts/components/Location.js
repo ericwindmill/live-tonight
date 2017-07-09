@@ -67,7 +67,6 @@ class Location extends Component {
   }
 
   render () {
-    console.log(this.props)
     return (
       <div className='Location'>
         <Map concerts={this.props.concerts} map={this.props.map} />

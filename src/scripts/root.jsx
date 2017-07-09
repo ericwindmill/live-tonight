@@ -6,13 +6,17 @@ import { Provider } from 'react-redux'
 
 import reducers from './reducers/root_reducer.js'
 import LocationContainer from './components/Location_Container'
+import Navigation from './components/Navigation'
 
 
 
 const Root = ({store}) => {
   return (
     <Provider store={store}>
-      <LocationContainer />
+      <div>
+        <Navigation />
+        <LocationContainer />
+      </div>
     </Provider>
   ) 
 }

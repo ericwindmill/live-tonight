@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-
+import forEach from 'lodash/forEach'
 
 class Map extends Component {
   constructor (props) {
@@ -10,19 +10,36 @@ class Map extends Component {
     }
   }
 
-    componentDidMount () {
-      const mapDOMNode = ReactDOM.findDOMNode(this.refs.map)
-      let mapOptions = {
-        center: {lat: 37.7749, lng: -122.4149},
-        zoom: 12
-      }
-      this.map = new google.maps.Map(mapDOMNode, mapOptions)
+  componentDidMount () {
+    const mapDOMNode = ReactDOM.findDOMNode(this.refs.map)
+    let mapOptions = {
+      center: {lat: 37.7749, lng: -122.4149},
+      zoom: 12
     }
+    this.map = new google.maps.Map(mapDOMNode, mapOptions)
+  }
  
-    componentDidUpdate (prevProps, prevState) {
-      let pos = {lat: this.props.map.lat, lng: this.props.map.lng} 
-      this.map.setCenter(pos)
+  componentDidUpdate (prevProps, prevState) {
+    let pos = {lat: this.props.map.lat, lng: this.props.map.lng} 
+    this.map.setCenter(pos)
+    
+
+
+    if (prevProps.concerts !== this.props.concerts) {
+      let markers = {}
+      Object.entries(this.props.concerts).forEach (([id, concert]) => {
+        console.log(concert)
+        // let latLng = { lat: concert.lat, lng: concert.lng }
+        //   var marker = new google.maps.Marker({
+        //     position: latLng,
+        //     map: this.map,
+        //     title: concert.artist[0]
+        //   });
+        // markers[concert.id] = marker
+      })
+    console.log(markers)
     }
+  }
   
 
   render () {
