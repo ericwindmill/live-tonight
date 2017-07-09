@@ -3,13 +3,29 @@
 export const FETCH_CONCERTS = 'FETCH_CONCERTS'
 export const RECEIVE_CONCERTS = 'RECEIVE_CONCERTS'
 
-const parseConcerts = (data) => {
-  data.forEach((concert, idx) => {
-    console.log(concert.Id)
-    console.log(concert.Artists[0].Name)
-    console.log(concert.Venue.Name)
-  })
+export const receiveConcerts = concerts => {
+  return {
+    type: RECEIVE_CONCERTS,
+    concerts: concerts
+  }
 }
+
+// const parseConcerts = (data) => {
+//   let concerts = {}
+//   data.forEach((concert, idx) => {
+//     let artists = concert.Artists.map((artist) => {
+//       return artist.Name
+//     })
+//     concerts[idx] = {
+//       id: concert.Id,
+//       artist: artists,
+//       venue: concert.Venue.Name,
+//       lat: concert.Venue.Lattitude,
+//       lng: concert.Venue.Longitude
+//     }
+//   })
+//   receiveConcerts(concerts)
+// }
 
 export const requestConcerts = location => dispatch => {
   let d = new Date()
@@ -19,9 +35,19 @@ export const requestConcerts = location => dispatch => {
   fetch(`http://api.jambase.com/events?zipCode=${zip}&radius=60&startDate=${today}&endDate=${tomorrow}&page=0&api_key=3dwvyy34qeajjs6q4q7vam2g`)
     .then(resp => (resp.json()))
     .then(data => {
-      parseConcerts(data.Events)
+      let concerts = {}
+      data.Events.forEach((concert, idx) => {
+        let artists = concert.Artists.map((artist) => {
+          return artist.Name
+        })
+        concerts[idx] = {
+          id: concert.Id,
+          artist: artists,
+          venue: concert.Venue.Name,
+          lat: concert.Venue.Latitude,
+          lng: concert.Venue.Longitude
+        }
+      })
+      dispatch(receiveConcerts(concerts))
     })
 }
-
-
-

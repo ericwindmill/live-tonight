@@ -10,7 +10,8 @@ import {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    map: state.map
+    map: state.map,
+    concerts: state.concerts
   }
 }
 

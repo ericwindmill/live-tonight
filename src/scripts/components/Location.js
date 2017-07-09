@@ -67,9 +67,10 @@ class Location extends Component {
   }
 
   render () {
+    console.log(this.props)
     return (
       <div className='Location'>
-        <Map map={this.props.map} />
+        <Map concerts={this.props.concerts} map={this.props.map} />
       </div>
     )
   }
