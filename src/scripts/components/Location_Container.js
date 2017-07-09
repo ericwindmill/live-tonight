@@ -4,6 +4,9 @@ import {
   updateUserCoordinates,
   updateZip
 } from '../actions/map_actions'
+import {
+  requestConcerts
+} from '../actions/concert_actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -14,7 +17,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     updateUserCoordinates: (lat, lng) => dispatch(updateUserCoordinates(lat, lng)),
-    updateZip: (zip) => dispatch(updateZip(zip))
+    updateZip: (zip) => dispatch(updateZip(zip)),
+    requestConcerts: (zip) => dispatch(requestConcerts(zip))
   }
 }
 

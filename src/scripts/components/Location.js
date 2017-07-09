@@ -17,7 +17,8 @@ class Location extends Component {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
-        this.setState({pos: pos})
+        this.props.updateUserCoordinates(pos.lat, pos.lng) // I need this for subsequent updates
+        this.setState({pos: pos}) // I need this for the initial update
         // TODO!! I NEED AN INFO WINDOW FOR ERROR HANDLING!
       }.bind(this), function () {
         handleLocationError(true)
@@ -37,17 +38,31 @@ class Location extends Component {
   // Get ZipCode and put it in the application state!
   componentDidUpdate (prevProps, prevState) {
     let pos, lat, lng
+    let { map } = this.props
     if (prevState.pos !== this.state.pos) {
-      lat = this.state.pos.lat
-      lng = this.state.pos.lng
+      lat = map.lat
+      lng = map.lng
       pos = { lat: lat, lng: lng } 
       this.props.updateUserCoordinates(lat, lng)
 
       let coder = new google.maps.Geocoder
       coder.geocode({'location': pos}, (results, status) => {
-        let zip = results[0].address_components.slice(-1)[0].long_name
-        this.props.updateZip(zip)
+        for (var j = 0; j < results.length - 1; j++) {
+          let postal = results[j].address_components
+          for (var i = 0; i < postal.length; i++) {
+            if (postal[i].types == 'postal_code') {
+              this.props.updateZip(postal[i].long_name)
+              break
+            }
+          }
+        }
       })
+    }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.props.map.zip !== nextProps.map.zip) {
+      this.props.requestConcerts(nextProps.map.zip)
     }
   }
 

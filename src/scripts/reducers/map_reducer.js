@@ -8,7 +8,7 @@ import merge from 'lodash/merge'
 const defaultState = {
   lat: '',
   lng: '',
-  zip: 94110
+  zip: ''
 }
 
 const MapReducer = (state = defaultState, action) => {

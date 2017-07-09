@@ -14,7 +14,6 @@ export const updateUserCoordinates = (lat, lng) => {
 }
 
 export const updateZip = zip => {
-
   return {
     type: GET_ZIP,
     zip: {zip}
