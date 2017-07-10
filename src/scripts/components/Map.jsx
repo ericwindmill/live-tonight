@@ -28,7 +28,6 @@ class Map extends Component {
     if (prevProps.concerts !== this.props.concerts) {
       let markers = {}
       Object.entries(this.props.concerts).forEach (([id, concert]) => {
-        console.log(concert)
         // let latLng = { lat: concert.lat, lng: concert.lng }
         //   var marker = new google.maps.Marker({
         //     position: latLng,
@@ -37,7 +36,6 @@ class Map extends Component {
         //   });
         // markers[concert.id] = marker
       })
-    console.log(markers)
     }
   }
   

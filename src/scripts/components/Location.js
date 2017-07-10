@@ -62,7 +62,7 @@ class Location extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.props.map.zip !== nextProps.map.zip) {
-      this.props.requestConcerts(nextProps.map.zip)
+      // this.props.requestConcerts(nextProps.map.zip)
     }
   }
 

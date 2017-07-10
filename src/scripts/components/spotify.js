@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
+import {
+  requestSpotify
+} from '../util/music_util'
 
 export default class Spotify extends Component {
+
+  componentDidMount () {
+    requestSpotify()
+  }
 
   render () {
     return (
