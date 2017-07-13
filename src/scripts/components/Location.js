@@ -10,7 +10,7 @@ class Location extends Component {
   }
 
   // Get Geolocation and put it in the state!
-  componentWillMount () {
+  componentDidMount () {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         let pos = {
@@ -62,7 +62,7 @@ class Location extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (this.props.map.zip !== nextProps.map.zip) {
-      // this.props.requestConcerts(nextProps.map.zip)
+      this.props.requestConcerts(nextProps.map.zip)
     }
   }
 
