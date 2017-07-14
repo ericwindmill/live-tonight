@@ -3,11 +3,10 @@ import '../styles/index.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import { HashRouter } from 'react-router-dom'
 
 import reducers from './reducers/root_reducer.js'
-import LocationContainer from './components/Location_Container'
-import Navigation from './components/Navigation'
-import Spotify from './components/spotify'
+import App from './components/App'
 
 
 
@@ -15,9 +14,9 @@ const Root = ({store}) => {
   return (
     <Provider store={store}>
       <div>
-        <Navigation />
-        <LocationContainer />
-        <Spotify />
+        <HashRouter>
+          <App />
+        </HashRouter>
       </div>
     </Provider>
   ) 

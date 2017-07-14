@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import forEach from 'lodash/forEach'
 import MarkerManager from '../util/map_markers'
+import { withRouter } from 'react-router-dom'
 
 class Map extends Component {
   constructor (props) {
@@ -9,6 +10,8 @@ class Map extends Component {
     this.state = { 
       coords: ''
     }
+
+    this.handleMarkerClick = this.handleMarkerClick.bind(this)
   }
 
   componentDidMount () {
@@ -18,7 +21,6 @@ class Map extends Component {
       zoom: 12
     }
     this.map = new google.maps.Map(mapDOMNode, mapOptions)
-    this.markerManager = new MarkerManager(this.map)
   }
  
   componentDidUpdate (prevProps, prevState) {
@@ -33,11 +35,17 @@ class Map extends Component {
             position: latLng,
             map: this.map,
             title: concert.artist[0] || ''
-          });
+          })
+          marker.addListener('click', () => {
+            this.handleMarkerClick(marker)
+          })
         markers[concert.id] = marker
       })
     }
-    this.markerManager.updateMarkers(markers)
+  }
+
+  handleMarkerClick(marker) {
+    console.log(this.props)
   }
   
 
@@ -51,4 +59,4 @@ class Map extends Component {
 
 }
 
-export default Map
+export default withRouter(Map)
